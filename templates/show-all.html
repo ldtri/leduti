@@ -1,0 +1,37 @@
+{% extends "layouts/layout.html" %}
+<!-- Title -->
+{% block title %}
+Career
+{% endblock %}
+<!-- Navigation -->
+{% block nav %}
+<li><a href="/shorten">URL Shortener</a></li>
+<li class="active"><a href="/career/">Career<span class="sr-only">(current)</span></a></li>
+{% endblock %}
+<!-- Content -->
+{% block content %}
+<div class="col-md-12">
+  <h2><i class="fa fa-github-square" aria-hidden="true"></i> Awesome Jobs Vietnam</h2>
+  <p>The best place to find devs in Vietnam!</p>
+  <table class="table table-hover">
+    {% for job in jobs %}
+      {% if loop.index % 2 == 0 %}
+      <tr>
+      {% else %}
+      <tr class="info">
+      {% endif %}
+        <td>
+          <p class="title" style="font-weight:bold">
+            <a target="_blank" href="/career/detail/{{ job[0]['issuesid'] }}">{{ job[0]['title'] }}</a>
+          </p>
+          <p class="post-date">
+            <i class="fa fa-calendar" aria-hidden="true" style="color: LightSalmon"></i>
+            {{ job[1] }}
+          </p>
+        </td>
+      <tr>
+    {% endfor %}
+  </table>
+  {{ pagination.links }}
+</div>
+{% endblock %}

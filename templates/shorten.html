@@ -1,0 +1,65 @@
+{% extends "layouts/layout.html" %}
+<!-- Title -->
+{% block title %}
+URL Shortener
+{% endblock %}
+<!-- Navigation -->
+{% block nav %}
+<li class="active"><a href="/shorten">URL Shortener<span class="sr-only">(current)</span></a></li>
+<li><a href="/career/">Career</a></li>
+{% endblock %}
+<!-- Content -->
+{% block content %}
+<div class="col-md-6 center">
+    <h2>PROJECTS - URL SHORTENER</h2>
+    {% if state == 'errorfree' %}
+    <div class="alert alert-success">
+        <label for="url">Link created</label>
+        <div class="input-group">
+            <input id="foo" type="text" class="form-control" value="{{ response }}" readonly>
+            <span class="input-group-btn">
+                <button class="btn btn-default" type="button" data-clipboard-target="#foo">Copy</button>
+            </span>
+        </div>
+        <!-- /input-group -->
+    </div>
+    {% endif %}
+    {% if state == 'error' %}
+        <div class="alert alert-danger" role="alert">
+            <strong>ERROR </strong>{{ response }}
+        </div>
+    {% endif %}
+    <form action="/addlink" method="post">
+        <div class="form-group">
+            <input type="url" class="form-control" name="url" placeholder="Paste the URL here" required>
+        </div>
+        <div class="form-group customize">
+            <input type="code" class="form-control" name="code" value="{{ code }}" placeholder="The short code">
+            <button type="submit" class="btn btn-default">Shorten</button>
+        </div>
+    </form>
+    <h2>Newest Shorten Create</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Short URL</th>
+                <th>Full URL</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for link in links %}
+                {% if loop.index % 2 == 0 %}
+                    <tr>
+                {% else %}
+                    <tr class="info">
+                {% endif %}
+                        <td>{{ loop.index }}</td>
+                        <td><a target="blank" href="{{ root_url + link[0] }}">{{ root_url + link[0] }}</a></td>
+                        <td><a target="blank" href="{{ link[1] }}">{{ link[1] }}</a></td>
+                    </tr>
+                {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

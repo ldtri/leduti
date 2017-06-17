@@ -1,0 +1,31 @@
+.pagination-page-info {
+    padding: .6em;
+    padding-left: 0;
+    width: 40em;
+    margin: .5em;
+    margin-left: 0;
+    font-size: 12px;
+}
+.pagination-page-info b {
+    color: black;
+    background: #6aa6ed;
+    padding-left: 2px;
+    padding: .1em .25em;
+    font-size: 150%;
+}
+
+.navbar-default .navbar-nav>.active>a,
+.navbar-default .navbar-nav>.open>a{
+    background-image: linear-gradient(to bottom,#d9edf7 0,#d9edf7 100%);
+}
+
+.col-md-10.center{
+    float: none!important;
+    margin: 0 auto;
+}
+
+.customize .form-control{
+    width: 50%;
+    float: left;
+    margin-right: 15px;
+}
